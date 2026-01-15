@@ -1,4 +1,4 @@
-# [Nombre de tu Juego de RV]
+# Armando Adventure
 
 **Asignatura:** Interfaces Inteligentes  
 **Grupo:** 7  
