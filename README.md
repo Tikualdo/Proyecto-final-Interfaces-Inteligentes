@@ -80,7 +80,20 @@ Evaluación de cumplimiento de buenas prácticas en RV:
 
 ---
 
-## 8. Acta de Acuerdos y Reparto de Tareas
+## 8. Diseño De Mapa
+
+El mapa se creo con unas dimensiones de 500x500, pensado como un valle rodea do momtañas( estas actuan como limites del mapa para el jugador).
+Se usaron una serie de asset de la Asset Store de Unity para darle vida al mundo:
+- Fantasy landscape (creacion de los pueblos, coliseo y decoracion).
+- Handpainted Forest Pack v1.0 ( para ambientación forestal).
+- Stylized Tree & Grass Samples ( para el bosque principal del mapa).
+- Mid poly Axes Collection, 3D Low-Poly Shields, Long Sword ( para decorar y ambientar el coliseo).
+  
+Así como el uso de las herramientas unity (por ejemplo el pincel del terreno) para poder modelar el mapeado.
+Recalcar que se nesecitaron ajustar varios materiales de los asset para que fueran compatible con URP, ademas de quitar, ajustar y añadir algunas mallas y colliders para el correcto fucnionamiento de las fisicas del entorno con el PJ y los NPC enemigos.
+
+
+## 9. Acta de Acuerdos y Reparto de Tareas
 
 **Integrantes:** Paulo Padilla Domingues, Salvador González Cueto y Manuel José Sebastián Noda
 
