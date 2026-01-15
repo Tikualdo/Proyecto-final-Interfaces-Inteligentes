@@ -75,7 +75,7 @@ Evaluación de cumplimiento de buenas prácticas en RV:
 | **Mantener 72/90 FPS estables** | ✅ Contempla | Uso de geometría *Low Poly* y optimización de *Draw Calls* (materiales compartidos). |
 | **Distancia de interacción cómoda** | ✅ Contempla | Los enemigos mantienen una `StopDistance` para no atravesar al usuario ni invadir su espacio íntimo. |
 | **Interfaces Diegéticas** | ✅ Contempla | La información (vida/daño) se muestra integrada en el mundo o mediante feedback visual, no en HUDs pegados a la cara. |
-| **Legibilidad de Textos** |  ✅ Contempla | El juego se basa en lenguaje visual, minimizando el uso de texto, pero puede leer claramente el nombre de las habilidades de als que dispone y encuentra. |
+| **Legibilidad de Textos** |  ✅ Contempla | El juego se basa en lenguaje visual, minimizando el uso de texto, pero puede leer claramente el nombre de las habilidades de las que dispone y encuentra. |
 | **Prevención de Cinetosis** | ✅ Contempla | Se evita el movimiento suave lateral (strafe) sin referencias estáticas o viñeta. |
 
 ---
@@ -90,7 +90,7 @@ Se usaron una serie de asset de la Asset Store de Unity para darle vida al mundo
 - Mid poly Axes Collection, 3D Low-Poly Shields, Long Sword ( para decorar y ambientar el coliseo).
   
 Así como el uso de las herramientas unity (por ejemplo el pincel del terreno) para poder modelar el mapeado.
-Recalcar que se nesecitaron ajustar varios materiales de los asset para que fueran compatible con URP, ademas de quitar, ajustar y añadir algunas mallas y colliders para el correcto fucnionamiento de las fisicas del entorno con el PJ y los NPC enemigos.
+Recalcar que se nesecitaron ajustar varios materiales de los asset para que fueran compatible con URP, ademas de quitar, ajustar y añadir algunas mallas y colliders para el correcto funcionamiento de las fisicas del entorno con el PJ y los NPC enemigos.
 
 
 ## 9. Acta de Acuerdos y Reparto de Tareas
