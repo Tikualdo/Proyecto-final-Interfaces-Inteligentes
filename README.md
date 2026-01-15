@@ -6,8 +6,8 @@
 | Nombre Completo | Alu | Rol Principal |
 | :--- | :--- | :--- |
 | **Paulo Padilla Domingues** | 0101571836 | Enemigos |
-| **Salvador González Cueto** | [Su ID] | Jugador |
-| **Manuel José Sebastián Noda** | [Su ID] | Escenario |
+| **Salvador González Cueto** | 0101424750 | Jugador |
+| **Manuel José Sebastián Noda** | 0101499918 | Escenario |
 
 ## 1. Descripción del Proyecto
 Prototipo de experiencia inmersiva en Realidad Virtual donde el jugador encarna a un hechicero. La mecánica principal se basa en una interfaz multimodal por voz: el usuario debe pronunciar comandos verbales específicos para conjurar hechizos y combatir enemigos. El objetivo es limpiar diferentes zonas de criaturas hostiles (Slimes, Esqueletos, Magos) para progresar y desbloquear un grimorio de habilidades más complejo.
@@ -75,14 +75,14 @@ Evaluación de cumplimiento de buenas prácticas en RV:
 | **Mantener 72/90 FPS estables** | ✅ Contempla | Uso de geometría *Low Poly* y optimización de *Draw Calls* (materiales compartidos). |
 | **Distancia de interacción cómoda** | ✅ Contempla | Los enemigos mantienen una `StopDistance` para no atravesar al usuario ni invadir su espacio íntimo. |
 | **Interfaces Diegéticas** | ✅ Contempla | La información (vida/daño) se muestra integrada en el mundo o mediante feedback visual, no en HUDs pegados a la cara. |
-| **Legibilidad de Textos** | ➖ N/A | El juego se basa en lenguaje visual, minimizando el uso de texto. |
+| **Legibilidad de Textos** |  ✅ Contempla | El juego se basa en lenguaje visual, minimizando el uso de texto, pero puede leer claramente el nombre de las habilidades de als que dispone y encuentra. |
 | **Prevención de Cinetosis** | ✅ Contempla | Se evita el movimiento suave lateral (strafe) sin referencias estáticas o viñeta. |
 
 ---
 
 ## 8. Acta de Acuerdos y Reparto de Tareas
 
-**Integrantes:** [Tu Nombre] y [Nombre Compañero]
+**Integrantes:** Paulo Padilla Domingues, Salvador González Cueto y Manuel José Sebastián Noda
 
 | Tarea Desarrollada | Responsable | Tipo |
 | :--- | :--- | :---: |
