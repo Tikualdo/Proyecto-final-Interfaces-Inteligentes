@@ -2,10 +2,15 @@
 
 **Asignatura:** Interfaces Inteligentes  
 **Grupo:** 7  
-**Integrantes:** [Nombre de los integrantes]
+## Integrantes
+| Nombre Completo | Alu | Rol Principal |
+| :--- | :--- | :--- |
+| **Paulo Padilla Domingues** | 0101571836 | Enemigos |
+| **Salvador González Cueto** | [Su ID] | Jugador |
+| **Manuel José Sebastián Noda** | [Su ID] | Escenario |
 
 ## 1. Descripción del Proyecto
-Pingoso
+Prototipo de experiencia inmersiva en Realidad Virtual donde el jugador encarna a un hechicero. La mecánica principal se basa en una interfaz multimodal por voz: el usuario debe pronunciar comandos verbales específicos para conjurar hechizos y combatir enemigos. El objetivo es limpiar diferentes zonas de criaturas hostiles (Slimes, Esqueletos, Magos) para progresar y desbloquear un grimorio de habilidades más complejo.
 
 ## 2. Demo en Funcionamiento
 
@@ -15,14 +20,15 @@ Pingoso
 
 ## 3. Cuestiones Importantes para el Uso
 
-Para ejecutar correctamente el prototipo, tener en cuenta:
-
-* **Hardware Requerido:** Visor compatible con SteamVR/Oculus (Meta Quest 2/3, HTC Vive, etc.) y mandos con 6DOF.
-* **Configuración Inicial:** Se recomienda iniciar la aplicación de escritorio (Oculus Link / SteamVR) antes de lanzar la build. El juego está diseñado para jugarse [de pie / sentado].
+* **Hardware Requerido:** Visor VR compatible, mandos 6DOF y **Micrófono funcional** (integrado en el visor o externo).
+* **Configuración Inicial:** Asegurarse de que el micrófono predeterminado en Windows/SteamVR sea el del casco. Se recomienda jugar en un entorno con ruido moderado/bajo para mejorar la detección.
 * **Controles:**
-    * **Gatillo Derecho/Izquierdo:** Agarrar armas u objetos.
-    * **Swing (Gesto físico):** Atacar con la espada (velocidad requerida para daño).
-    * **[Botón X/A]:** [Acción extra si la hay, sino borrar].
+    * **Comandos de Voz:** Mecánica principal de ataque (Pronunciar hechizos como "Fireball", "Black hole", etc.).
+    * **Botón Y / B**: Abrir inventario.
+    * **Botón A**: Saltar.
+    * **Gatillo Trigger (índice):** 
+    * **Grip (botón del mango):** Agarrar objetos. 
+    * **Tracking de Manos:** Apuntar la dirección del hechizo.
 
 ---
 
@@ -31,9 +37,9 @@ Para ejecutar correctamente el prototipo, tener en cuenta:
 Los puntos fuertes del desarrollo técnico y de diseño son:
 
 1.  **IA Enemiga Polimórfica:** Implementación de una arquitectura sólida mediante la clase abstracta `EnemyBase`, permitiendo comportamientos compartidos (visión, salud) y específicos (Embestida del esqueleto, Proyectiles del mago, Salto parabólico del Slime).
-2.  **Gestión de Datos por ScriptableObjects:** Todo el balanceo del juego (vida, velocidad, daño, colores de variantes) se gestiona mediante activos de datos (`EnemyStats`), permitiendo iterar sin tocar código.
+2.  **Gestión de Datos por ScriptableObjects:** Todo el balanceo del juego (vida, velocidad, daño, colores de variantes) se gestiona mediante activos de datos, permitiendo iterar sin tocar código.
 3.  **Animaciones Procedurales y Reactivas:** Uso de *Animation Events* y corrutinas para sincronizar lógica y visuales. Destaca el **Slime**, que combina navegación NavMesh con saltos físicos calculados en tiempo real para predecir la posición del jugador.
-4.  **Feedback de Combate ("Game Feel"):** Implementación de *i-frames* (tiempo de invulnerabilidad) y feedback visual (parpadeo de color/shaders) al recibir daño, mejorando la legibilidad del combate en RV.
+4.  **Feedback de Combate:** Implementación de *i-frames* (tiempo de invulnerabilidad) y feedback visual (parpadeo de color/shaders) al recibir daño, mejorando la legibilidad del combate en RV.
 
 ---
 
@@ -41,7 +47,7 @@ Los puntos fuertes del desarrollo técnico y de diseño son:
 
 El proyecto integra los siguientes conceptos técnicos de la asignatura:
 
-* **Programación Orientada a Objetos (POO):** Uso extensivo de Herencia (`SkeletonEnemy : EnemyBase`), Polimorfismo (métodos `virtual` y `override` para `Move()` y `TakeDamage()`) y Encapsulamiento.
+* **Programación Orientada a Objetos (POO):** Uso extensivo de Herencia, Polimorfismo (métodos `virtual` y `override` para `Move()` y `TakeDamage()`) y Encapsulamiento.
 * **Interfaces:** Implementación de `IDamageable` para estandarizar el sistema de daño entre el jugador y los distintos enemigos.
 * **Inteligencia Artificial (NavMesh + FSM):** Máquinas de estados finitos (Patrulla -> Persecución -> Ataque -> Huida) combinadas con el sistema de navegación de Unity.
 * **Matemáticas Vectoriales:** Cálculos de `Vector3.Angle` para conos de visión (FOV), `Vector3.Distance` para rangos y `Lerp` para movimientos suaves y animaciones procedurales.
@@ -51,11 +57,11 @@ El proyecto integra los siguientes conceptos técnicos de la asignatura:
 
 ## 6. Sensores e Interfaces Multimodales
 
-Se han utilizado los siguientes sensores y técnicas de interacción:
+Este proyecto pone especial énfasis en la interacción multimodal:
 
-* **Tracking Posicional (6DOF):** Uso de la posición y rotación de HMD y mandos para interacción natural (esquivar físicamente, golpear con la mano).
-* **Retroalimentación Háptica (Vibración):** Uso de los actuadores de los mandos para dar feedback táctil al golpear enemigos o recibir daño.
-* **Audio Espacial (Básico):** Detección de la dirección del enemigo mediante fuentes de audio 3D.
+* **Reconocimiento de Voz (Speech-to-Text):** Implementación de una interfaz natural (NUI) que procesa la entrada de audio del micrófono para detectar palabras clave y ejecutar acciones (Spellcasting), eliminando la abstracción de botones para el combate.
+* **Tracking Posicional (6DOF):** Uso de la posición de la mano y la orientación de la cabeza para apuntar los proyectiles invocados por la voz.
+* **Retroalimentación Háptica:** Vibración en los mandos al lanzar un hechizo con éxito o recibir daño.
 
 ---
 
@@ -80,12 +86,12 @@ Evaluación de cumplimiento de buenas prácticas en RV:
 
 | Tarea Desarrollada | Responsable | Tipo |
 | :--- | :--- | :---: |
-| **Arquitectura de IA (`EnemyBase`, `IDamageable`)** | [Tu Nombre] | Individual |
-| **IA Específica (Esqueleto, Mago, Slime)** | [Tu Nombre] | Individual |
-| **Sistema de Datos (`ScriptableObjects`)** | [Tu Nombre] | Individual |
-| **Controlador del Jugador y VR Rig** | [Nombre Compañero] | Individual |
-| **Sistema de Combate Jugador (Espada)** | [Nombre Compañero] | Individual |
-| **Diseño de Nivel y Escenario** | [Nombre Compañero] | Individual |
-| **Integración de Animaciones y Animator** | [Tu Nombre] | Individual |
-| **Gestión del Repositorio y Merges** | Ambos | Grupo |
-| **Documentación y README** | [Tu Nombre] | Individual |
+| **Arquitectura de IA (`EnemyBase`, `IDamageable`)** | Paulo | Individual |
+| **IA Específica (Esqueleto, Mago, Slime)** | Paulo | Individual |
+| **Sistema de Datos (`ScriptableObjects`)** | Paulo y Salvador | Grupal |
+| **Controlador del Jugador y VR Rig** | Salvador | Individual |
+| **Sistema de Combate Jugador (Espada)** | Salvador | Individual |
+| **Diseño de Nivel y Escenario** | Manuel | Individual |
+| **Integración de Animaciones y Animator** | Todos | Grupal |
+| **Gestión del Repositorio y Merges** | Salvador | Individual |
+| **Documentación y README** | Todos | Grupal |
