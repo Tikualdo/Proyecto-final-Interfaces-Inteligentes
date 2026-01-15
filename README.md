@@ -93,5 +93,5 @@ Evaluación de cumplimiento de buenas prácticas en RV:
 | **Sistema de Combate Jugador (Espada)** | Salvador | Individual |
 | **Diseño de Nivel y Escenario** | Manuel | Individual |
 | **Integración de Animaciones y Animator** | Todos | Grupal |
-| **Gestión del Repositorio y Merges** | Salvador | Individual |
+| **Gestión del Repositorio y Merges** | Todos | Grupal |
 | **Documentación y README** | Todos | Grupal |
