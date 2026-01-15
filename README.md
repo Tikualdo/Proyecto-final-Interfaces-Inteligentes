@@ -103,7 +103,7 @@ Recalcar que se nesecitaron ajustar varios materiales de los asset para que fuer
 | **IA Específica (Esqueleto, Mago, Slime)** | Paulo | Individual |
 | **Sistema de Datos (`ScriptableObjects`)** | Paulo y Salvador | Grupal |
 | **Controlador del Jugador y VR Rig** | Salvador | Individual |
-| **Sistema de Combate Jugador (Espada)** | Salvador | Individual |
+| **Sistema de Combate Jugador** | Salvador | Individual |
 | **Diseño de Nivel y Escenario** | Manuel | Individual |
 | **Integración de Animaciones y Animator** | Todos | Grupal |
 | **Gestión del Repositorio y Merges** | Todos | Grupal |
