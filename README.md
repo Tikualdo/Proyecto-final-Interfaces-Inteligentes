@@ -14,7 +14,8 @@ Prototipo de experiencia inmersiva en Realidad Virtual donde el jugador encarna 
 
 ## 2. Demo en Funcionamiento
 
-![Gif Animado de Ejecución](AQUI_PEGA_EL_ENLACE_A_TU_GIF.gif)
+* [Vídeo demostración desde la escena de Unity](https://drive.google.com/file/d/1BMNfN67fH8fxSWPijm0rchRcqOQn4F54/view?usp=sharing)
+* [Vídeo demostración desde las gafas Meta Quest 2](https://drive.google.com/file/d/1Cn_6cemtycQryLYv9JrLYL98CWNGIz60/view?usp=sharing)
 
 ---
 
