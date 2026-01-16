@@ -25,7 +25,7 @@ public class AudioSpells : MonoBehaviour
         if (GlobalVoiceManager.Instance!= null)
         {
             Debug.Log("Jugador conectado al servicio de voz.");
-            GlobalVoiceManager.Instance.OnTranscriptionReceived += CheckText;
+            //GlobalVoiceManager.Instance.OnTranscriptionReceived += CheckText;
         }
         else
         {
@@ -33,12 +33,22 @@ public class AudioSpells : MonoBehaviour
             // Opcional: Instanciar un prefab de respaldo para debug en editor
         }
     }
-    private void OnDestroy()
+    
+    private void OnEnable()
+{
+    // Nos "enchufamos" al evento global cuando el jugador se activa
+    if (GlobalVoiceManager.Instance != null)
     {
-        // ¡CRÍTICO! Desuscribirse para evitar memory leaks y errores de referencia nula.
-        if (GlobalVoiceManager.Instance!= null)
+        GlobalVoiceManager.Instance.OnTranscriptionSuccess += CheckText;
+    }
+}
+
+    private void OnDisable()
+    {
+        // Nos "desenchufamos" al morir/desactivarse para evitar errores
+        if (GlobalVoiceManager.Instance != null)
         {
-            GlobalVoiceManager.Instance.OnTranscriptionReceived -= CheckText;
+            GlobalVoiceManager.Instance.OnTranscriptionSuccess -= CheckText;
         }
     }
 
@@ -50,6 +60,21 @@ public class AudioSpells : MonoBehaviour
             cooldownText.text = Math.Round(spellSummoned, 1).ToString() + "s";
             if (!cooldownObject.activeSelf) { cooldownObject.SetActive(true); }
             if (spellSummoned <= 0f) { cooldownObject.SetActive(false); }
+        }
+    }
+
+    public void OnVoiceButtonDown() {
+        // Protección por si pruebas la escena sin pasar por el menú
+        if (GlobalVoiceManager.Instance != null) 
+        {
+            GlobalVoiceManager.Instance.StartListening();
+        }
+    }
+
+    public void OnVoiceButtonUp() {
+        if (GlobalVoiceManager.Instance != null) 
+        {
+            GlobalVoiceManager.Instance.StopAndProcess();
         }
     }
 
@@ -82,20 +107,5 @@ public class AudioSpells : MonoBehaviour
         Rigidbody bulletRB = bullet.GetComponent<Rigidbody>();
         bulletRB.AddForce(bullet.transform.forward * spell.SpellSpeed, ForceMode.Impulse);
         spellSummoned = spell.Cooldown;
-    }
-
-    public void StartRecord()
-    {
-        if (GlobalVoiceManager.Instance!= null)
-        {
-            GlobalVoiceManager.Instance.StartRecord();
-        }
-    }
-    public void StopRecord()
-    {
-        if (GlobalVoiceManager.Instance!= null)
-        {
-            GlobalVoiceManager.Instance.StopRecord();
-        }
     }
 }

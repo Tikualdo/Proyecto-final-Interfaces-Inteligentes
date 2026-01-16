@@ -1,5 +1,5 @@
 using UnityEngine;
-using TMPro; // Asumiendo TextMeshPro para la UI
+using TMPro; 
 using System.Collections.Generic;
 
 public class MenuMicSelector : MonoBehaviour
@@ -8,6 +8,13 @@ public class MenuMicSelector : MonoBehaviour
 
     private void Start()
     {
+        // Es buena práctica comprobar si el Manager existe antes de intentar nada
+        if (GlobalVoiceManager.Instance == null)
+        {
+            Debug.LogWarning("GlobalVoiceManager no encontrado en la escena. Asegúrate de iniciar desde el Menú.");
+            return;
+        }
+
         PopulateMicrophoneList();
     }
 
@@ -16,8 +23,10 @@ public class MenuMicSelector : MonoBehaviour
         _micDropdown.ClearOptions();
         List<string> options = new List<string>();
 
-        // Acceder a la API nativa de Unity para obtener dispositivos 
-        foreach (var device in Microphone.devices)
+        // Obtenemos los dispositivos
+        string[] devices = Microphone.devices;
+
+        foreach (var device in devices)
         {
             options.Add(device);
         }
@@ -27,27 +36,41 @@ public class MenuMicSelector : MonoBehaviour
             options.Add("No Microphone Detected");
             _micDropdown.interactable = false;
         }
+        else
+        {
+            _micDropdown.interactable = true;
+        }
 
         _micDropdown.AddOptions(options);
-        
-        // Configurar listener para cambios
+
+        // --- CORRECCIÓN CLAVE ---
+        // Limpiamos listeners anteriores para evitar duplicados si recargas el menú
+        _micDropdown.onValueChanged.RemoveAllListeners(); 
         _micDropdown.onValueChanged.AddListener(OnMicSelectionChanged);
-        
-        // Seleccionar el primero por defecto si existe
+
+        // Seleccionamos el primero por defecto (o el que ya tenga el Manager seleccionado)
         if (options.Count > 0)
         {
-            OnMicSelectionChanged(0);
+            // Opcional: Podrías buscar cuál tiene seleccionado el Manager y poner ese
+            _micDropdown.value = 0; 
+            _micDropdown.RefreshShownValue();
+            
+            // Forzamos la actualización en el Manager
+            OnMicSelectionChanged(0); 
         }
     }
 
+    // El evento del Dropdown nos da un 'int index', usémoslo directamente
     private void OnMicSelectionChanged(int index)
     {
-        string selectedMic = _micDropdown.options[index].text;
-        
+        // Verificamos que el índice sea válido (por si acaso la lista está vacía)
+        if (Microphone.devices.Length <= index) return;
+
         // Comunicación con el Singleton
-        if (GlobalVoiceManager.Instance!= null)
+        if (GlobalVoiceManager.Instance != null)
         {
-            GlobalVoiceManager.Instance.SetMicrophone(selectedMic);
+            // AHORA SÍ: Pasamos el 'int' directamente, no el string
+            GlobalVoiceManager.Instance.SetMicrophone(index);
         }
     }
 }
